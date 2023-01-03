@@ -33,13 +33,11 @@ let crudSlice = createSlice({
       return check;
     },
 
-    updateUser: function (state, action) {
-      const index = state.findIndex(
-        (user: User) => user.userId === action.payload.id
-      );
+    updateUser: function (state, { payload }) {
+      const index = state.findIndex((user: User) => user.userId === payload.id);
       if (index > -1) {
-        state[index].userName = action.payload.name;
-        state[index].userPhone = action.payload.phone;
+        state[index].userName = payload.name;
+        state[index].userPhone = payload.phone;
       }
 
       sessionStorage.setItem("User", JSON.stringify(state));
